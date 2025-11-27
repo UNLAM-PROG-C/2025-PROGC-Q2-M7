@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://rjohcdk4pkbu"]
+
+[ext_resource type="Script" uid="uid://d02geukoc1mv0" path="res://scenes/cliente/EsperandoRival.gd" id="1_xk2sc"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xk2sc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LblEsperandoRival" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Esperando que se una tu rival..."
+
+[node name="LblEstado" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Jugadores conectados: 1"
