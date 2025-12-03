@@ -1,53 +1,70 @@
-# Manual de Usuario
+# Manual de Usuario - Truco Online
 
-Este manual explica cómo instalar, ejecutar y utilizar el juego de Truco online incluido en este proyecto.
+Guía rápida para jugar al Truco multijugador en red.
 
 ## Requisitos
 
-- Godot 4.x instalado.
-- Conectividad local (para pruebas en la misma máquina) o en red LAN.
+- **Godot 4.x** instalado
+- Red local (misma PC o LAN)
 
-## Instalación
+## Cómo Jugar
 
-1. Descarga o clona el repositorio.
-2. Abre `project.godot` con Godot.
-3. (Opcional) Si reinstalaste o limpiaste el proyecto, al abrir Godot se regenerará la carpeta `.godot/`.
+### 1. Iniciar el Servidor
 
-## Ejecución
+1. Abre el proyecto en Godot
+2. Presiona **F5** o el botón Play
+3. En el menú, clickea **"Servidor"**
+4. El servidor queda esperando jugadores en el puerto **7777**
 
-- Abre una instancia de Godot y ejecuta el **Servidor**.
-- Abre una segunda instancia de Godot y ejecuta el **Cliente**.
+### 2. Conectar Clientes
 
+1. Abre otra instancia del juego (puede ser en la misma PC u otra en la red)
+2. Presiona **F5**
+3. Clickea **"Cliente"**
+4. Se conectará automáticamente al servidor (localhost por defecto)
 
-## Paso a Paso
+**Para jugar en LAN:** edita `scripts/client/MenuInicial.gd` línea 26 y cambia `"127.0.0.1"` por la IP del servidor.
 
-1. **Menú Inicial** (`MenuInicial.tscn`):
-   - Botón "Servidor": inicia el servidor multisala en puerto `7777`.
-   - Botón "Cliente": conecta al servidor en `127.0.0.1:7777` (localhost). Para otra IP, ajusta en `Red.gd` si hiciste cambios.
-2. **Bienvenida** (`Bienvenida.tscn`):
-   - Pulsa el botón "Listo". El servidor te agregará a la cola de emparejamiento.
-3. **Emparejamiento**:
-   - Cuando haya dos jugadores listos, el servidor los asigna a una sala y ambos pasan a **Mesa de Juego**.
-4. **Mesa de Juego** (`MesaJuego.tscn`):
-   - Verás tu mano (3 cartas) y el dorso del rival.
-   - El label de turno indica si es tu turno. Si es tu turno, tus cartas se habilitan: haz clic en una para jugarla.
-   - Se mostrará la carta jugada en el centro y se irá resolviendo la baza cuando ambos jueguen.
-   - Puntajes se actualizan al finalizar cada mano.
-   - Botones:
-     - "Cantar Truco": envía propuesta de truco (sube el valor de la mano). El rival verá "¿Quiero?" y podrá aceptar o rechazar.
-     - "Quiero / No Quiero": responden a un canto de truco pendiente.
-     - "Irse al Mazo": rendirse (el rival gana 1 punto) y se reinicia la mano.
-     - "Volver a Jugar": tras mostrar resultado de mano, oculta el panel y notifica al servidor que estás listo para una nueva mano.
-5. **Desconexión**:
-   - Si el rival se desconecta, el cliente mostrará aviso y volverá al menú.
+### 3. Emparejar y Jugar
 
-## Consejos de Juego
+1. Ambos clientes verán la pantalla de bienvenida
+2. Presionen **"Listo"**
+3. El servidor los emparejará automáticamente
+4. ¡Comienza la partida!
 
-- Guarda cartas altas para segundas/terceras bazas si tu mano lo permite.
-- Usa el Truco para presionar cuando sientas ventaja o para bluff cuando el rival muestra debilidad.
+## Controles de Juego
 
-## Problemas Frecuentes
+### Durante tu turno
+- **Click en una carta** → la juegas
+- **Cantar Truco** → propone subir la apuesta
+- **Irse al Mazo** → te rendís (rival gana 1 punto)
 
-- **Cliente no conecta**: valida firewall/puerto `7777`, que el servidor esté corriendo, y la IP correcta.
-- **No se habilitan cartas**: asegúrate de que el turno te pertenece (label "¡ES TU TURNO!").
-- **No se ven cartas**: verifica rutas de imágenes en `assets/cartas` y que Godot regeneró `.godot/`.
+### Cuando el rival canta Truco
+- **Quiero** → aceptás la apuesta
+- **No Quiero** → rechazás (rival gana)
+
+### Después de cada mano
+- **Volver a Jugar** → preparado para la siguiente mano
+
+## Reglas Básicas
+
+- Cada jugador recibe **3 cartas**
+- Gana quien gane **2 de 3 bazas**
+- Primera mano al llegar a **15 puntos**
+- El Truco sube el valor de la mano (1 → 2 → 3 → 4 puntos)
+- Si te rendís o no querés el Truco, el rival gana los puntos actuales
+
+## Solución de Problemas
+
+**El cliente no conecta:**
+- Verificá que el servidor esté ejecutándose
+- En Windows, abrí el puerto 7777 UDP en el firewall:
+  ```powershell
+  New-NetFirewallRule -DisplayName "Godot Truco" -Direction Inbound -Protocol UDP -LocalPort 7777 -Action Allow
+  ```
+
+**Las cartas no se ven:**
+- Cerrá y volvé a abrir el proyecto en Godot para regenerar los imports
+
+**Las cartas no se habilitan:**
+- Solo podés jugar en tu turno (mirá el label superior)

@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgv8n5c3qkp4y"]
+
+[ext_resource type="Script" path="res://scripts/server/ServerManager.gd" id="1_manager"]
+[ext_resource type="Texture2D" path="res://assets/fondos/FondoEspera.png" id="2_bg_espera"]
+
+[node name="ServerManager" type="Node2D"]
+script = ExtResource("1_manager")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Fondo" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg_espera")
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LblTitulo" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SERVIDOR MULTISALA - Puerto 7777"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LblEstado" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Servidor iniciado - Esperando jugadores..."
+
+[node name="LblSalas" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Salas activas: 0 / 10"
+horizontal_alignment = 1
+
+[node name="LblCola" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+text = "Jugadores en cola: 0"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="LblLog" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+text = "LOG (ver consola para detalles):"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "[center]Sistema de múltiples salas concurrentes activo.\nCada sala gestiona un partido independiente.\nLos jugadores son emparejados automáticamente.[/center]"
+[node name="TxtInfo" type="RichTextLabel" parent="CanvasLayer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Sistema de múltiples salas concurrentes activo.
+Cada sala gestiona un partido independiente.
+Los jugadores son emparejados automáticamente."
+scroll_following = true

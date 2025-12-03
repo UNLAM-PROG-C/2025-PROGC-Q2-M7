@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcs6suwcmm7vc"]
+
+[ext_resource type="Script" uid="uid://temrueivs6dj" path="res://scripts/client/Carta.gd" id="1_e7pc1"]
+
+[node name="Carta" type="Control"]
+custom_minimum_size = Vector2(140, 210)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 140.0
+offset_bottom = 210.0
+script = ExtResource("1_e7pc1")
+
+[node name="Imagen" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -30.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DebugValor" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1

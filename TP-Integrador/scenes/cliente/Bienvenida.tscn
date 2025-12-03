@@ -1,28 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5w20ufv03hbj"]
+[gd_scene load_steps=3 format=3 uid="uid://b5w20ufv03hbj"]
 
-[ext_resource type="Script" uid="uid://tbr5fylnxtaq" path="res://scenes/cliente/Bienvenida.gd" id="1_r36l2"]
+[ext_resource type="Script" uid="uid://tbr5fylnxtaq" path="res://scripts/client/Bienvenida.gd" id="1_r36l2"]
+[ext_resource type="Texture2D" path="res://assets/fondos/FondoEspera.png" id="2_bg_espera"]
 
 [node name="Bienvenida" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_r36l2")
 
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg_espera")
+stretch_mode = 5
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 504.0
-offset_bottom = 248.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -170.0
+offset_right = 300.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
 
 [node name="LblNombreJuego" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+horizontal_alignment = 1
 text = "TRUCO"
 
 [node name="LblNuevaPartida" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+horizontal_alignment = 1
 text = "NUEVA PARTIDA"
 
-[node name="LblModalidad" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "MODALIDAD:"
 
 [node name="BtnSolicitarPartidaMaM" type="Button" parent="VBoxContainer"]
 layout_mode = 2

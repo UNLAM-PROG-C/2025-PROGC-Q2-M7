@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://guyksubl0qhp"]
 
-[ext_resource type="Script" uid="uid://dq0aptjb81s01" path="res://scenes/cliente/MesaJuego.gd" id="1_erxus"]
-
-[sub_resource type="Theme" id="Theme_erxus"]
+[ext_resource type="Script" uid="uid://dq0aptjb81s01" path="res://scripts/client/MesaJuego.gd" id="1_erxus"]
+[ext_resource type="Texture2D" uid="uid://dxexae3wa6qxr" path="res://assets/fondos/FondoSalaJuego.png" id="2_bg_sala"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erxus"]
-bg_color = Color(0, 0.39215687, 0, 1)
+bg_color = Color(0, 0, 0, 0)
 
 [node name="MesaJuego" type="Control"]
 layout_mode = 3
@@ -14,8 +13,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_erxus")
 script = ExtResource("1_erxus")
+
+[node name="FondoSala" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg_sala")
+stretch_mode = 6
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -31,62 +39,68 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 20.0
-offset_bottom = 87.0
+offset_right = -856.0
+offset_bottom = 111.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
-text = "SALA DE JUEGO - Partida Iniciada"
+text = "SALA DE JUEGO
+Partida Iniciada"
 horizontal_alignment = 1
 
 [node name="ManoRival" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 100.0
-offset_bottom = 250.0
+offset_top = 20.0
+offset_bottom = 180.0
 grow_horizontal = 2
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="ManoPropia" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -200.0
-offset_bottom = -50.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.90300006
+anchor_right = 0.5
+anchor_bottom = 0.90300006
+offset_left = -575.424
+offset_top = -160.14404
+offset_right = 575.42395
+offset_bottom = -0.14404297
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Puntuacion" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.0
-offset_top = 300.0
-offset_right = 50.0
-offset_bottom = 340.0
+anchors_preset = -1
+anchor_left = 0.8064236
+anchor_top = 0.024691356
+anchor_right = 0.9800347
+anchor_bottom = 0.125
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
 text = "0-0"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LblTurno" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = 360.0
-offset_right = 150.0
-offset_bottom = 400.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -110.0
+offset_bottom = -70.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Esperando turno..."
-horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnIrseAlMazo" type="Button" parent="."]
 layout_mode = 1
@@ -102,7 +116,7 @@ offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "Irse al mazo"
+text = "IRSE AL MAZO"
 
 [node name="BtnCantarTruco" type="Button" parent="."]
 layout_mode = 1
@@ -118,7 +132,7 @@ offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "Cantar Truco"
+text = "TRUCO"
 
 [node name="BtnQuiero" type="Button" parent="."]
 visible = false
@@ -135,7 +149,7 @@ offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "Quiero"
+text = "QUIERO"
 
 [node name="BtnNoQuiero" type="Button" parent="."]
 visible = false
@@ -152,7 +166,55 @@ offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "No Quiero"
+text = "NO QUIERO"
+
+[node name="BtnEnvido" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -820.0
+offset_top = -70.0
+offset_right = -700.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "ENVIDO"
+
+[node name="BtnRealEnvido" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -70.0
+offset_right = -840.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "REAL ENVIDO"
+
+[node name="BtnFaltaEnvido" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1120.0
+offset_top = -70.0
+offset_right = -980.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "FALTA ENVIDO"
 
 [node name="CartasJugadas" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -161,13 +223,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -75.0
-offset_right = 150.0
-offset_bottom = 75.0
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="PanelResultado" type="Panel" parent="."]
@@ -215,4 +277,3 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Volver a Jugar"
-

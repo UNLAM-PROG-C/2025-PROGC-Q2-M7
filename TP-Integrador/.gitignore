@@ -1,3 +1,11 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Ejecutables exportados
+*.exe
+*.pck
+*.zip
+Truco.exe
+Truco.console.exe
+*.import

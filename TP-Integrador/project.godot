@@ -11,14 +11,24 @@ config_version=5
 [application]
 
 config/name="TrucoProgC-"
-run/main_scene="uid://b4ou3l32pthwr"
+run/main_scene="res://scenes/menu/MenuInicial.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
-RedGlobal="*res://scripts/Red.gd"
-Global="*res://scripts/Global.gd"
+NetworkManager="*res://scripts/autoloads/NetworkManager.gd"
+ServerRPCHandler="*res://scripts/server/ServerRPCHandler.gd"
+ClientRPCHandler="*res://scripts/client/ClientRPCHandler.gd"
+Global="*res://scripts/autoloads/Global.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom="res://themes/GlobalTheme.tres"
 
 [rendering]
 

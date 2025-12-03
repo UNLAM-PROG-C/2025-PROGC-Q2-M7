@@ -21,7 +21,7 @@ Proyecto de Truco online construido con Godot, arquitectura cliente-servidor usa
 - `scenes/` interfaz y nodos de servidor/cliente
   - `cliente/` (`Bienvenida.tscn`, `EsperandoRival.tscn`, `MesaJuego.tscn`): UI de juego.
   - `common/` (`Carta.tscn`): presentación de cartas.
-  - `servidor/` (`ServidorSalas.tscn`, `ServidorSalas.gd`): servidor multisala.
+  - `servidor/` (`ServerManager.tscn`): servidor multisala con arquitectura modular (ServerManager.gd, RoomPool.gd, Matchmaking.gd).
   - `menu/` (`MenuInicial.tscn`, `MenuInicial.gd`): arranque de servidor/cliente.
 
 ## Requisitos
@@ -75,13 +75,14 @@ Tipos enviados: `int`, `bool`, `Array`, `Vector2`. La serialización es automát
 
 ## Concurrencia y Sincronización
 - **Concurrencia de eventos**: Godot procesa señales y RPCs en el bucle principal; múltiples clientes pueden ser atendidos intercaladamente.
-- **Paralelismo**: actualmente NO. `ServidorSalas.gd` declara estructuras para un pool de hilos, pero no se crean `Thread`s.
-- **Mutexes**: usados preventivamente para proteger estructuras compartidas (`Sala.gd`, `ServidorSalas.gd`). Hoy no son estrictamente necesarios sin multihilo real.
+- **Paralelismo**: actualmente NO. `RoomPool.gd` y `Matchmaking.gd` declaran estructuras para un pool de hilos, pero no se crean `Thread`s.
+- **Mutexes**: usados preventivamente para proteger estructuras compartidas (`Sala.gd`, `RoomPool.gd`, `Matchmaking.gd`). Hoy no son estrictamente necesarios sin multihilo real.
 
 ## Desarrollo
-- Código en GDScript, con autoloads `RedGlobal` y `Global`.
+- Código en GDScript, con autoloads `NetworkManager`, `ServerRPCHandler`, `ClientRPCHandler` y `Global`.
 - `ValorCartas.gd` contiene jerarquía y comparación de cartas del Truco argentino.
 - UI desacoplada de red y lógica mediante RPCs y estados en `Global.gd`.
+- Arquitectura modular: NetworkManager (conexiones), ServerManager (orquestación), RoomPool (gestión de salas), Matchmaking (emparejamiento).
 
 ## Próximas Mejoras (sugeridas)
 - Envido (Envido/Real Envido/Falta) con “quiero / no quiero”.
